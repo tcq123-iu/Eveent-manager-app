@@ -1,0 +1,30 @@
+.my-btn {
+    text-align: center !important;
+}
+
+.product-card {
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    background-color: #f8f9fa;
+}
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+.product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.product-price {
+    color: #28a745;
+    font-size: 14px;
+}

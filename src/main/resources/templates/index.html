@@ -1,0 +1,102 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Event Manager</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+</head>
+
+<body>
+<main role="main">
+    <div th:if="${baseResponse.getErrorCode() != '00'}" class="alert alert-danger" role="alert">
+        <span th:text="${baseResponse.getErrorMessage()}">Error message</span>
+    </div>
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Event Management</h1>
+                <a href="/home/add-event" class="btn btn-success my-2">Add an event</a>
+                <a href="/home/sort-event" class="btn btn-danger my-2">Sort event</a>
+                <a href="/home" class="btn btn-secondary my-2">Reload</a>
+
+            </p>
+        </div>
+        <div class="container mt-5">
+            <form action="/home/search" method="post">
+                <!-- Input và nút Search -->
+                <div class="mb-3">
+                    <div class="input-group">
+                        <input type="number" id="yearInput" name="year" class="form-control" placeholder="Enter year" required>||
+                        <input type="text" id="searchInput" name="query" class="form-control" placeholder="Enter search text" required>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+
+                <!-- Radio Buttons -->
+                <div class="mb-3">
+                    <label class="form-label">Search By:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filter" id="yearOption" value="1" required>
+                        <label class="form-check-label" for="yearOption">Tittle</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filter" id="dateOption" value="2">
+                        <label class="form-check-label" for="dateOption">Date</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filter" id="locationOption" value="3">
+                        <label class="form-check-label" for="locationOption">Location</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+
+                <div th:each="event : ${baseResponse.getListEvent()}" class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-body">
+                            <h3  th:text="${event.getTitle()}" ></h3>
+                            <p th:text="${event.getDescription()}" class="card-text"></p>
+                            <b>Location: </b><p th:text="${event.getLocation()}" class="card-text"></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small  th:text="${event.getDate()}"  class="text-muted"></small>
+                                <small  th:text="${event.getTime()}"  class="text-muted"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer class="text-muted">
+    <div class="container">
+
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
